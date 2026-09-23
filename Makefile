@@ -2,6 +2,7 @@ IMAGE     := ipmi-kvm
 CONTAINER := ipmi-kvm
 PORT      := 8080
 RES       := 1920x1000x24
+URL       ?=
 
 .PHONY: build
 build:
@@ -9,11 +10,13 @@ build:
 
 .PHONY: run
 run: build
+	@[ -n "$(URL)" ] || (echo "Usage: make run URL=https://your-ipmi-host" && exit 1)
 	docker run -d \
 		--name $(CONTAINER) \
 		--rm \
 		-p $(PORT):8080 \
 		-e RES=$(RES) \
+		-e URL=$(URL) \
 		$(IMAGE)
 
 .PHONY: type
