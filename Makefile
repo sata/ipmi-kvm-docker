@@ -1,3 +1,4 @@
+SHELL     := /bin/bash
 IMAGE     := ipmi-kvm
 CONTAINER := ipmi-kvm
 PORT      := 8080
