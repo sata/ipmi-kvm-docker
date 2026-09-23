@@ -6,6 +6,8 @@ RUN apt-get update && apt-get -y install xvfb x11vnc wget \
     supervisor fluxbox icedtea-7-plugin net-tools python-numpy \
     chromium-browser xdotool
 RUN sed -e '/^jdk.jar.disabledAlgorithms/s/^/#/' -i /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/security/java.security
+RUN mkdir -p /root/.java/deployment/security
+ADD deployment.properties /root/.java/deployment/deployment.properties
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 WORKDIR /root/
